@@ -1,0 +1,33 @@
+[package]
+name = "c64-koala-recolor"
+version = "0.1.0"
+edition = "2024"
+license = "0BSD"
+
+[dependencies]
+anyhow = { version = "1.0.102", default-features = false }
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+restriction = { level = "warn", priority = -1 }
+arbitrary_source_item_ordering = "allow"
+arithmetic_side_effects = "allow"
+as_conversions = "allow"
+blanket_clippy_restriction_lints = "allow"
+cast_possible_truncation = "allow"
+default_numeric_fallback = "allow"
+deref_addrof = "allow"
+implicit_return = "allow"
+indexing_slicing = "allow"
+min_ident_chars = "allow"
+missing_docs_in_private_items = "allow"
+missing_trait_methods = "allow"
+pattern_type_mismatch = "allow"
+pub_with_shorthand = "allow"
+question_mark_used = "allow"
+shadow_reuse = "allow"
+single_call_fn = "allow"
+single_char_lifetime_names = "allow"
+
+[lints.rust]
+unsafe_code = "warn"
