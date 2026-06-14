@@ -89,7 +89,7 @@ fn adapt(file: &mut [u8], colors: [u8; 4]) -> anyhow::Result<()> {
         fix_cols(bitmap, screen, colram, bgcol, colors)?;
     }
 
-    koala.set_bgcol(colors[0]);
+    koala.set_bgcolor(colors[0]);
 
     Ok(())
 }

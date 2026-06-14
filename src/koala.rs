@@ -11,12 +11,12 @@ impl<'a> Koala<'a> {
     }
 
     #[inline]
-    pub(crate) fn bgcol(&self) -> u8 {
+    pub(crate) fn bgcolor(&self) -> u8 {
         self.file[10002]
     }
 
     #[inline]
-    pub(crate) fn set_bgcol(&mut self, value: u8) {
+    pub(crate) fn set_bgcolor(&mut self, value: u8) {
         self.file[10002] = value;
     }
 
@@ -41,12 +41,13 @@ impl<'b> Iterator for CharsMut<'_, 'b> {
         if self.pos == 1000 {
             None
         } else {
-            let bitmap = &mut self.koala.file[2 + self.pos * 8..2 + self.pos * 8 + 8];
             let result = (
                 #[expect(unsafe_code, reason = "see below")]
                 // Safety: the three references do point to distinct memory, for all calls of next
                 unsafe {
-                    &mut *(bitmap.as_mut_ptr().cast::<[u8; 8]>())
+                    &mut *(self.koala.file[2 + self.pos * 8..2 + self.pos * 8 + 8]
+                        .as_mut_ptr()
+                        .cast::<[u8; 8]>())
                 },
                 #[expect(unsafe_code, reason = "see below")]
                 // Safety: the three references do point to distinct memory, for all calls of next
@@ -58,7 +59,7 @@ impl<'b> Iterator for CharsMut<'_, 'b> {
                 unsafe {
                     &mut *(&raw mut self.koala.file[9002 + self.pos])
                 },
-                self.koala.bgcol(),
+                self.koala.bgcolor(),
             );
             self.pos += 1;
 
