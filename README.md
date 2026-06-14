@@ -4,7 +4,7 @@
 
 * rust (https://rustup.rs/)
 
-## Running
+## Running from source
 
 The program expects four colors as an argument, and either reads a koala image from stdin
 and writes the koala with adapted colors to stdout:
@@ -23,4 +23,20 @@ Or maybe even many:
 
 ```shell
 cargo run -- --colors 0,1,7,10 replace /path/to/*.koa
+```
+
+## Installing
+
+Install:
+
+```shell
+cargo install --path .
+```
+
+Running (in the directory of the images, same ideas as above):
+
+```shell
+c64-koala-recolor --colors 0,1,7,10 < input.koa > output.koa
+c64-koala-recolor --colors 0,1,7,10 replace image.koa [...]
+c64-koala-recolor --colors 0,1,7,10 replace *.koa
 ```
